@@ -9,11 +9,11 @@ def main():
   html_bytes = page.read()
   html = html_bytes.decode("utf-8")
 
-  title_index = html.find("<title>")
-  start_title_index = title_index + len("<title>")
-  end_title_index = html.find("</title>")
-  title = html[start_title_index:end_title_index]
-  print(title)
+  soup = BeautifulSoup(html, "html.parser")
+  print(soup.title.string)
+
+  r = soup.find_all("a", class_="bookTitle")
+  print(r[0].string)
 
 if __name__ == '__main__':
   main()

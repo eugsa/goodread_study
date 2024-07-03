@@ -43,13 +43,23 @@ def split_additional_text(row):
 def clean(book_list):
   book_list = book_list.apply(split_additional_text, axis=1)
   book_list = book_list.drop("additional_text", axis=1)
+
+  book_list.average_rating = book_list.average_rating.str.replace(r"[a-zA-Z]", "", regex=True)
+  book_list.average_rating = book_list.average_rating.astype("float")
+  book_list.amount_rating = book_list.amount_rating.str.replace(r"[a-zA-Z,]", "", regex=True)
+  book_list.amount_rating = book_list.amount_rating.astype("int")
+  book_list.publishing_year = book_list.publishing_year.str.replace(r"[a-zA-Z]", "", regex=True)
+  book_list['publishing_year_datetime'] = pd.to_datetime(book_list.publishing_year, format="%Y", errors="coerce")
+  book_list.rename(columns={"publishing_year": "publishing_year_str"}, inplace=True)
+
   return book_list
 
 def main():
   soup = soup_init()
   book_list = extract(soup)
   clean_book_list = clean(book_list)
-  print(clean_book_list.sample(n=20))
+  print(clean_book_list.head(50))
+  print(clean_book_list.info())
 
 if __name__ == '__main__':
   main()

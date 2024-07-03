@@ -4,12 +4,13 @@ from bs4 import BeautifulSoup
 
 URL = "https://www.goodreads.com/shelf/show/non-fiction"
 
-def main():
+def soup_init():
   page = urlopen(URL)
   html_bytes = page.read()
   html = html_bytes.decode("utf-8")
-  soup = BeautifulSoup(html, "html.parser")
+  return BeautifulSoup(html, "html.parser")
 
+def extract(soup):
   books_table = soup.find_all("div", class_="elementList")
 
   data = []
@@ -26,6 +27,11 @@ def main():
 
   df = pd.DataFrame(data)
   print(df.sample(n=20))
+  return df
+
+def main():
+  soup = soup_init()
+  book_list = extract(soup)
 
 if __name__ == '__main__':
   main()

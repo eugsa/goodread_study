@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import re
 
 URL = "https://www.goodreads.com/shelf/show/non-fiction"
+REPORTS_PATH = "./reports/"
 
 def soup_init():
   page = urlopen(URL)
@@ -53,10 +54,17 @@ def clean(book_list):
 
   return book_list
 
+def generate_report(book_list):
+  filename = "book_list.csv"
+  filepath = REPORTS_PATH + filename
+  book_list.to_csv(filepath)
+  print(f"See saved report as { filepath }")
+
 def main():
   soup = soup_init()
   book_list = extract(soup)
   clean_book_list = clean(book_list)
+  generate_report(clean_book_list)
   print(clean_book_list.head(50))
   print(clean_book_list.info())
 

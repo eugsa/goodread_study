@@ -1,20 +1,24 @@
 import pandas as pd
-from urllib.request import urlopen
+import requests
 from bs4 import BeautifulSoup
 import re
 
+HEADERS = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+  "Cache-Control": "no-cache",
+  "Pragma": "no-cache"
+}
 URL = "https://www.goodreads.com/shelf/show/non-fiction"
+PAGE_URL_TEXT = "?page="
+
 REPORTS_PATH = "./reports/"
 
 def soup_init():
-  page = urlopen(URL)
-  html_bytes = page.read()
-  html = html_bytes.decode("utf-8")
-  return BeautifulSoup(html, "html.parser")
+  response = requests.get(URL, headers=HEADERS)
+  return BeautifulSoup(response.content, "html.parser")
 
-def extract(soup):
+def scrape_books_in_page(soup):
   books_table = soup.find_all("div", class_="elementList")
-
   data = []
   for e in books_table:
     title = e.find("a", class_="bookTitle")
@@ -26,7 +30,10 @@ def extract(soup):
         "additional_text": additional_text.text
       }
       data.append(book)
+  return data
 
+def extract(soup):
+  data = scrape_books_in_page(soup)
   df = pd.DataFrame(data)
   return df
 
@@ -65,8 +72,7 @@ def main():
   book_list = extract(soup)
   clean_book_list = clean(book_list)
   generate_report(clean_book_list)
-  print(clean_book_list.head(50))
-  print(clean_book_list.info())
+  print(clean_book_list.head(5))
 
 if __name__ == '__main__':
   main()

@@ -49,8 +49,7 @@ def clean(book_list):
   book_list.amount_rating = book_list.amount_rating.str.replace(r"[a-zA-Z,]", "", regex=True)
   book_list.amount_rating = book_list.amount_rating.astype("int")
   book_list.publishing_year = book_list.publishing_year.str.replace(r"[a-zA-Z]", "", regex=True)
-  book_list['publishing_year_datetime'] = pd.to_datetime(book_list.publishing_year, format="%Y", errors="coerce")
-  book_list.rename(columns={"publishing_year": "publishing_year_str"}, inplace=True)
+  book_list.publishing_year = book_list.publishing_year.astype("int")
 
   return book_list
 

@@ -1,3 +1,4 @@
 .zshrc
 reports/*.csv
 .DS_Store
+.env

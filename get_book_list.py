@@ -10,22 +10,17 @@ import pdb
 import os
 from dotenv import load_dotenv
 
-HEADERS = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-  "Cache-Control": "no-cache",
-  "Pragma": "no-cache"
-}
+LOGIN_URL = "https://www.goodreads.com/user/sign_in"
 URL = "https://www.goodreads.com/shelf/show/non-fiction"
 PAGE_URL_TEXT = "?page="
 
 REPORTS_PATH = "./reports/"
 
 def log_into_goodreads(driver):
-  login_url = "https://www.goodreads.com/user/sign_in"
-  driver.get(login_url)
-
+  driver.get(LOGIN_URL)
   access_sign_in_btn = driver.find_element(By.CLASS_NAME, "authPortalSignInButton")
   access_sign_in_btn.click()
+
   load_dotenv()
   email_field = driver.find_element(By.ID, "ap_email")
   password_field = driver.find_element(By.ID, "ap_password")
@@ -38,11 +33,10 @@ def selenium_request():
   driver = webdriver.Chrome()
   log_into_goodreads(driver)
   driver.get(URL)
-  driver.quit()
+  return driver
 
-def soup_init():
-  response = requests.get(URL, headers=HEADERS)
-  return BeautifulSoup(response.content, "html.parser")
+def soup_init(html):
+  return BeautifulSoup(html)
 
 def scrape_books_in_page(soup):
   books_table = soup.find_all("div", class_="elementList")
@@ -95,13 +89,13 @@ def generate_report(book_list):
   print(f"See saved report as { filepath }")
 
 def main():
-  selenium_request()
-
-  # soup = soup_init()
-  # book_list = extract(soup)
-  # clean_book_list = clean(book_list)
-  # generate_report(clean_book_list)
-  # print(clean_book_list.head(5))
+  driver = selenium_request()
+  soup = soup_init(driver.page_source)
+  book_list = extract(soup)
+  clean_book_list = clean(book_list)
+  generate_report(clean_book_list)
+  print(clean_book_list.head(5))
+  driver.quit()
 
 if __name__ == '__main__':
   main()

@@ -1,6 +1,7 @@
 from config import *
 import pandas as pd
 from parser_utils import *
+import pdb
 
 def scrape_books_in_page(soup):
   books_table = soup.find_all("div", class_="elementList")
@@ -17,13 +18,16 @@ def scrape_books_in_page(soup):
       data.append(book)
   return data
 
+def has_next_page(soup):
+  return bool(soup.find("a", class_="next_page"))
+
 def extract_data(driver, soup):
   current_page = 1
   df = pd.DataFrame()
 
-  while (current_page <= 3):
-    current_URL = URL + PAGE_URL_TEXT + str(current_page)
-    driver.get(current_URL)
+  while (has_next_page(soup)):
+    current_url = URL + PAGE_URL_TEXT + str(current_page)
+    driver.get(current_url)
     soup = soup_init(driver.page_source)
     data = scrape_books_in_page(soup)
     df = pd.concat([df, pd.DataFrame(data)], ignore_index=True)

@@ -26,7 +26,7 @@ def extract_data(driver, soup):
     driver.get(current_URL)
     soup = soup_init(driver.page_source)
     data = scrape_books_in_page(soup)
-    df = pd.concat([df, pd.DataFrame(data)])
+    df = pd.concat([df, pd.DataFrame(data)], ignore_index=True)
     current_page += 1
 
   return df

@@ -28,6 +28,7 @@ def log_into_goodreads(driver):
   password_field.send_keys(os.getenv("GR_PASSWORD"))
   sign_in_btn = driver.find_element(By.ID,"signInSubmit")
   sign_in_btn.click()
+  # pdb.set_trace() # to add if needing to enter the captcha
 
 def selenium_request():
   driver = webdriver.Chrome()
@@ -36,7 +37,7 @@ def selenium_request():
   return driver
 
 def soup_init(html):
-  return BeautifulSoup(html)
+  return BeautifulSoup(html, "html.parser")
 
 def scrape_books_in_page(soup):
   books_table = soup.find_all("div", class_="elementList")
@@ -53,9 +54,18 @@ def scrape_books_in_page(soup):
       data.append(book)
   return data
 
-def extract(soup):
-  data = scrape_books_in_page(soup)
-  df = pd.DataFrame(data)
+def extract(driver, soup):
+  current_page = 1
+  df = pd.DataFrame()
+
+  while (current_page <= 3):
+    current_URL = URL + PAGE_URL_TEXT + str(current_page)
+    driver.get(current_URL)
+    soup = soup_init(driver.page_source)
+    data = scrape_books_in_page(soup)
+    df = pd.concat([df, pd.DataFrame(data)])
+    current_page += 1
+
   return df
 
 def split_additional_text(row):
@@ -78,7 +88,7 @@ def clean(book_list):
   book_list.amount_rating = book_list.amount_rating.str.replace(r"[a-zA-Z,]", "", regex=True)
   book_list.amount_rating = book_list.amount_rating.astype("int")
   book_list.publishing_year = book_list.publishing_year.str.replace(r"[a-zA-Z]", "", regex=True)
-  book_list.publishing_year = book_list.publishing_year.astype("int")
+  book_list.publishing_year = book_list.publishing_year.astype("int", errors='ignore')
 
   return book_list
 
@@ -91,7 +101,7 @@ def generate_report(book_list):
 def main():
   driver = selenium_request()
   soup = soup_init(driver.page_source)
-  book_list = extract(soup)
+  book_list = extract(driver, soup)
   clean_book_list = clean(book_list)
   generate_report(clean_book_list)
   print(clean_book_list.head(5))

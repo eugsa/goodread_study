@@ -8,12 +8,15 @@ def scrape_books_in_page(soup):
   data = []
   for e in books_table:
     title = e.find("a", class_="bookTitle")
+    author = e.find("a", class_="authorName")
     additional_text = e.find("span", class_="greyText smallText")
 
     if title:
       book = {
         "title": title.text,
-        "additional_text": additional_text.text
+        "author": author.text,
+        "additional_text": additional_text.text,
+        "url": title.get("href")
       }
       data.append(book)
   return data

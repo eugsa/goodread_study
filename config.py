@@ -1,4 +1,5 @@
-LOGIN_URL = "https://www.goodreads.com/user/sign_in"
-URL = "https://www.goodreads.com/shelf/show/non-fiction"
+BASE_URL = "https://www.goodreads.com"
+LOGIN_URL = BASE_URL + "/user/sign_in"
+URL = BASE_URL + "/shelf/show/non-fiction"
 PAGE_URL_TEXT = "?page="
 REPORTS_PATH = "./reports/"

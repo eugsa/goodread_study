@@ -45,7 +45,7 @@ def fetch_general_infos(driver):
 
   return df
 
-def fetch_detailed_infos(book, driver):
+def fetch_book_page(book, driver):
   detailed_page_url = BASE_URL + book.url
   driver.get(detailed_page_url)
   delay = 10
@@ -56,6 +56,8 @@ def fetch_detailed_infos(book, driver):
   except TimeoutException:
     print(f"Timeout on book page. Some information might be missing for this book: {book.title}")
 
+def fetch_detailed_infos(book, driver):
+  fetch_book_page(book, driver)
   soup = soup_init(driver.page_source)
 
   page_count_el = soup.find("p", {'data-testid': 'pagesFormat'})
@@ -77,7 +79,7 @@ def fetch_detailed_infos(book, driver):
     "wanting_to_read_count": wanting_to_read_count
   })
 
-def extract_data(driver, soup):
+def extract_data(driver):
   basics_df = fetch_general_infos(driver)
   fetch_detailed_infos_lambda = lambda book: fetch_detailed_infos(book, driver)
   basics_df[["page_count", "price", "currently_reading_count", "wanting_to_read_count"]] = basics_df.apply(fetch_detailed_infos_lambda, axis=1, result_type='expand')

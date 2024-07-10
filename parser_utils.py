@@ -23,7 +23,6 @@ def log_into_goodreads(driver):
 def selenium_request():
   driver = webdriver.Chrome()
   log_into_goodreads(driver)
-  driver.get(URL)
   return driver
 
 def soup_init(html):

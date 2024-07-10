@@ -9,7 +9,6 @@ def main():
   book_list = extract_data(driver, soup)
   clean_book_list = clean(book_list)
   generate_report(clean_book_list)
-  print(clean_book_list.head(5))
   driver.quit()
 
 if __name__ == '__main__':

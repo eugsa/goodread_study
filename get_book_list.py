@@ -6,7 +6,7 @@ from export import *
 def main():
   driver = selenium_request()
   soup = soup_init(driver.page_source)
-  book_list = extract_data(driver, soup)
+  book_list = extract_data(driver)
   clean_book_list = clean(book_list)
   generate_report(clean_book_list)
   driver.quit()

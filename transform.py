@@ -17,7 +17,7 @@ def split_additional_text(row):
 def metric_char_conversion(currently_reading_count):
     print(currently_reading_count)
     if (not currently_reading_count
-        or (type(currently_reading_count) == float and math.isnan(currently_reading_count))):
+        or (isinstance(currently_reading_count, float) and math.isnan(currently_reading_count))):
         return currently_reading_count
     elif "k" in currently_reading_count:
         return float(currently_reading_count.replace("k", "")) * 10**3

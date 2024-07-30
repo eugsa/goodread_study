@@ -1,11 +1,12 @@
-from config import *
 import pandas as pd
-from parser_utils import *
 import numpy as np
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import pdb
+from selenium.webdriver.common.by import By
+import config
+import parser_utils
+# import pdb
 
 def scrape_books_in_page(soup):
     books_table = soup.find_all("div", class_="elementList")
@@ -36,9 +37,9 @@ def fetch_general_infos(driver):
 
     # while (has_next_page(soup)):
     while (current_page <= 1): # tmp; for testing purposes
-        current_url = URL + PAGE_URL_TEXT + str(current_page)
+        current_url = config.URL + config.PAGE_URL_TEXT + str(current_page)
         driver.get(current_url)
-        soup = soup_init(driver.page_source)
+        soup = parser_utils.soup_init(driver.page_source)
         data = scrape_books_in_page(soup)
         df = pd.concat([df, pd.DataFrame(data)], ignore_index=True)
         current_page += 1
@@ -46,7 +47,7 @@ def fetch_general_infos(driver):
     return df
 
 def fetch_book_page(book, driver):
-    detailed_page_url = BASE_URL + book.url
+    detailed_page_url = config.BASE_URL + book.url
     driver.get(detailed_page_url)
     delay = 10
     try:
@@ -58,7 +59,7 @@ def fetch_book_page(book, driver):
 
 def fetch_detailed_infos(book, driver):
     fetch_book_page(book, driver)
-    soup = soup_init(driver.page_source)
+    soup = parser_utils.soup_init(driver.page_source)
 
     page_count_el = soup.find("p", {'data-testid': 'pagesFormat'})
     page_count = np.nan if not page_count_el or not hasattr(page_count_el, "text") else page_count_el.text

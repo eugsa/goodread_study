@@ -1,13 +1,13 @@
-from config import *
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
-import os
+import config
 # import pdb
 
 def log_into_goodreads(driver):
-    driver.get(LOGIN_URL)
+    driver.get(config.LOGIN_URL)
     access_sign_in_btn = driver.find_element(By.CLASS_NAME, "authPortalSignInButton")
     access_sign_in_btn.click()
 

@@ -1,13 +1,13 @@
-from parser_utils import *
-from extract import *
-from transform import *
-from export import *
+import parser_utils
+import extract
+import transform
+import export
 
 def main():
-    driver = selenium_request()
-    book_list = extract_data(driver)
-    clean_book_list = clean(book_list)
-    generate_report(clean_book_list)
+    driver = parser_utils.selenium_request()
+    book_list = extract.extract_data(driver)
+    clean_book_list = transform.clean(book_list)
+    export.generate_report(clean_book_list)
     driver.quit()
 
 if __name__ == '__main__':

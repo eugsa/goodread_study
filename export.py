@@ -1,3 +1,4 @@
+"""Provides methods to export the data."""
 import config
 
 def generate_report(book_list):

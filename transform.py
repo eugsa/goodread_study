@@ -1,3 +1,4 @@
+"""Provides methods cleaning and transforming the data."""
 import re
 import math
 # import pdb

@@ -1,3 +1,4 @@
+"""Main method conducting the whole ETL process."""
 import parser_utils
 import extract
 import transform

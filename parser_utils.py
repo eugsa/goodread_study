@@ -1,3 +1,4 @@
+"""Diverse specific methods used by the parser."""
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By

@@ -1,3 +1,4 @@
+"""Provides methods to extract the data through scraping."""
 import pandas as pd
 import numpy as np
 from selenium.webdriver.support.ui import WebDriverWait

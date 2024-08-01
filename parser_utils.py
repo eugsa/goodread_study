@@ -21,7 +21,7 @@ def log_into_goodreads(driver, debug):
     sign_in_btn.click()
 
     if debug:
-        pdb.set_trace()
+        pdb.set_trace() # pauses in order to solve the occasional captcha
 
 def selenium_request(debug):
     driver = webdriver.Chrome()

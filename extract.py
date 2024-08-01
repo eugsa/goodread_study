@@ -58,26 +58,44 @@ def fetch_book_page(book, driver):
     delay = 10
     try:
         WebDriverWait(driver, delay).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-testid="currentlyReadingSignal"]'))
+            EC.presence_of_element_located((
+                By.CSS_SELECTOR, 'div[data-testid="currentlyReadingSignal"]'
+            ))
         )
     except TimeoutException:
-        print(f"Timeout on book page. Some information might be missing for this book: {book.title}")
+        print(
+            "Timeout on book page. Some information"
+            f"might be missing for this book: {book.title}"
+        )
 
 def fetch_detailed_infos(book, driver):
     fetch_book_page(book, driver)
     soup = parser_utils.soup_init(driver.page_source)
 
     page_count_el = soup.find("p", {'data-testid': 'pagesFormat'})
-    page_count = np.nan if not page_count_el or not hasattr(page_count_el, "text") else page_count_el.text
+    if not page_count_el or not hasattr(page_count_el, "text"):
+        page_count = np.nan
+    else
+        page_count = page_count_el.text
 
     shop_button = soup.find("button", class_="Button--buy")
-    price = np.nan if not shop_button or not hasattr(shop_button, "text") or shop_button.text.startswith("Shop") else shop_button.text
+
+    if not shop_button or not hasattr(shop_button, "text") or shop_button.text.startswith("Shop"):
+        price = np.nan
+    else:
+        price = shop_button.text
 
     currently_reading_count_el = soup.find("div", {'data-testid': 'currentlyReadingSignal'})
-    currently_reading_count = np.nan if not currently_reading_count_el or not hasattr(currently_reading_count_el, "text") else currently_reading_count_el.text
+    if not currently_reading_count_el or not hasattr(currently_reading_count_el, "text"):
+        currently_reading_count = np.nan
+    else:
+        currently_reading_count = currently_reading_count_el.text
 
     wanting_to_read_count_el = soup.find("div", {'data-testid': 'toReadSignal'})
-    wanting_to_read_count = np.nan if not wanting_to_read_count_el or not hasattr(wanting_to_read_count_el, "text") else wanting_to_read_count_el.text
+    if not wanting_to_read_count_el or not hasattr(wanting_to_read_count_el, "text"):
+        wanting_to_read_count = np.nan
+    else:
+        wanting_to_read_count = wanting_to_read_count_el.text
 
     return pd.Series({
         "page_count": page_count,

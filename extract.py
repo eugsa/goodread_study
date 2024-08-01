@@ -7,11 +7,11 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 import config
 import parser_utils
-# import pdb
 
-def scrape_books_in_page(soup):
+def scrape_books_in_page(soup, debug):
     books_table = soup.find_all("div", class_="elementList")
-    # del books_table[2:] # tmp; for testing purposes
+    if debug:
+        del books_table[2:]
 
     data = []
     for e in books_table:
@@ -32,16 +32,21 @@ def scrape_books_in_page(soup):
 def has_next_page(soup):
     return bool(soup.find("a", class_="next_page"))
 
-def fetch_general_infos(driver):
+def fetch_general_infos(driver, debug):
     current_page = 1
     df = pd.DataFrame()
 
-    # while (has_next_page(soup)):
-    while (current_page <= 1): # tmp; for testing purposes
+    while True:
+        if debug:
+            condition = current_page <= 1
+        else:
+            condition = has_next_page(soup)
+        if not condition:
+            break
         current_url = config.URL + config.PAGE_URL_TEXT + str(current_page)
         driver.get(current_url)
         soup = parser_utils.soup_init(driver.page_source)
-        data = scrape_books_in_page(soup)
+        data = scrape_books_in_page(soup, debug)
         df = pd.concat([df, pd.DataFrame(data)], ignore_index=True)
         current_page += 1
 
@@ -81,8 +86,8 @@ def fetch_detailed_infos(book, driver):
         "wanting_to_read_count": wanting_to_read_count
     })
 
-def extract_data(driver):
-    basics_df = fetch_general_infos(driver)
+def extract_data(driver, debug):
+    basics_df = fetch_general_infos(driver, debug)
     fetch_detailed_infos_lambda = lambda book: fetch_detailed_infos(book, driver)
     basics_df[["page_count", "price", "currently_reading_count", "wanting_to_read_count"]] = basics_df.apply(fetch_detailed_infos_lambda, axis=1, result_type='expand')
     return basics_df

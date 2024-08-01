@@ -1,7 +1,6 @@
 """Provides methods cleaning and transforming the data."""
 import re
 import math
-# import pdb
 
 def split_additional_text(row):
     additional_text_sep = "—"
@@ -15,7 +14,6 @@ def split_additional_text(row):
     return row
 
 def metric_char_conversion(currently_reading_count):
-    print(currently_reading_count)
     if (not currently_reading_count
         or (isinstance(currently_reading_count, float) and math.isnan(currently_reading_count))):
         return currently_reading_count
@@ -23,8 +21,7 @@ def metric_char_conversion(currently_reading_count):
         return float(currently_reading_count.replace("k", "")) * 10**3
     elif "m" in currently_reading_count:
         return float(currently_reading_count.replace("m", "")) * 10**6
-    else:
-        return float(currently_reading_count)
+    return float(currently_reading_count)
 
 def clean(book_list):
     book_list = book_list.apply(split_additional_text, axis=1)

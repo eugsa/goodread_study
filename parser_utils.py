@@ -1,13 +1,13 @@
 """Diverse specific methods used by the parser."""
 import os
+import pdb
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 import config
-# import pdb
 
-def log_into_goodreads(driver):
+def log_into_goodreads(driver, debug):
     driver.get(config.LOGIN_URL)
     access_sign_in_btn = driver.find_element(By.CLASS_NAME, "authPortalSignInButton")
     access_sign_in_btn.click()
@@ -19,11 +19,13 @@ def log_into_goodreads(driver):
     password_field.send_keys(os.getenv("GR_PASSWORD"))
     sign_in_btn = driver.find_element(By.ID,"signInSubmit")
     sign_in_btn.click()
-    # pdb.set_trace() # to add if needing to enter the captcha
 
-def selenium_request():
+    if debug:
+        pdb.set_trace()
+
+def selenium_request(debug):
     driver = webdriver.Chrome()
-    log_into_goodreads(driver)
+    log_into_goodreads(driver, debug)
     return driver
 
 def soup_init(html):

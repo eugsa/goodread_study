@@ -1,0 +1,113 @@
+,Year,Category,Title,Author
+0,2024,Fiction,Night Watch,Jayne Anne Phillips
+1,2024,Nonfiction,A Day in the Life of Abed Salama,Nathan Thrall
+2,2024,Biography,Master Slave Husband Wife,Ilyon Woo
+3,2024,Biography,King,Jonathan Eig
+4,2024,Memoir/Autobiography,Liliana's Invincible Summer,Cristina Rivera Garza
+5,2024,History,No Right to an Honest Living,Jacqueline Jones
+6,2024,Poetry,Tripas,Brandon Som
+7,2023,Fiction,Trust,Hernan Diaz
+8,2023,Fiction,Demon Copperhead,Barbara Kingsolver
+9,2023,Nonfiction,His Name Is George Floyd,Robert Samuels
+10,2023,Biography,G-Man,Beverly Gage
+11,2023,Memoir/Autobiography,Stay True,Hua Hsu
+12,2023,History,Freedom's Dominion,Jefferson Cowie
+13,2023,Poetry,Then the War,Carl Phillips
+14,2022,Fiction,The Netanyahus,Joshua Cohen
+15,2022,Nonfiction,Invisible Child,Andrea Elliott
+16,2022,Biography,Chasing Me to My Grave,Winfred Rembert
+17,2022,History,Cuba,Ada Ferrer
+18,2022,History,Covered with Night,Nicole Eustace
+19,2022,Poetry,frank,Diane Seuss
+20,2021,Fiction,The Night Watchman,Louise Erdrich
+21,2021,Nonfiction,Wilmington's Lie,David Zucchino
+22,2021,Biography,The Dead Are Arising,Les Payne
+23,2021,History,Franchise,Marcia Chatelain
+24,2021,Poetry,Postcolonial Love Poem,Natalie Diaz
+25,2020,Fiction,The Nickel Boys,Colson Whitehead
+26,2020,Nonfiction,The End of the Myth,Greg Grandin
+27,2020,Nonfiction,The Undying,Anne Boyer
+28,2020,Biography,Sontag,Benjamin Moser
+29,2020,History,Sweet Taste of Liberty,W.Caleb McDaniel
+30,2020,Poetry,The Tradition,Jericho Brown
+31,2019,Fiction,The Overstory,Richard Powers
+32,2019,Nonfiction,Amity and Prosperity,Eliza Griswold
+33,2019,Biography,The New Negro,Jeffrey C. Stewart
+34,2019,History,Frederick Douglass,David W. Blight
+35,2019,Poetry,Be With,Forrest Gander
+36,2018,Fiction,Less,Andrew Sean Greer
+37,2018,Nonfiction,Locking Up Our Own,James Forman Jr.
+38,2018,Biography,Prairie Fires,Caroline Fraser
+39,2018,History,The Gulf,Jack E. Davis
+40,2018,Poetry,Half-light,Frank Bidart
+41,2017,Fiction,The Underground Railroad,Colson Whitehead
+42,2017,Nonfiction,Evicted,Matthew Desmond
+43,2017,Biography,The Return,Hisham Matar
+44,2017,History,Blood in the Water,Heather Ann Thompson
+45,2017,Poetry,Olio,Tyehimba Jess
+46,2016,Fiction,The Sympathizer,Viet Thanh Nguyen
+47,2016,Nonfiction,Black Flags,Joby Warrick
+48,2016,Biography,Barbarian Days,William Finnegan
+49,2016,History,Custer's Trials,T.J. Stiles
+50,2016,Poetry,Ozone Journal,Peter Balakian
+51,2015,Fiction,All the Light We Cannot See,Anthony Doerr
+52,2015,Nonfiction,The Sixth Extinction,Elizabeth Kolbert
+53,2015,Biography,The Pope and Mussolini,David Kertzer
+54,2015,History,Encounters at the Heart of the World,Elizabeth A. Fenn
+55,2015,Poetry,Digest,Gregory Pardlo
+56,2014,Fiction,The Goldfinch,Donna Tartt
+57,2014,Nonfiction,Toms River,Dan Fagin
+58,2014,Biography,Margaret Fuller,Megan Marshall
+59,2014,History,The Internal Enemy,Alan Taylor
+60,2014,Poetry,3 Sections,Vijay Seshadri
+61,2013,Fiction,The Orphan Master's Son,Adam Johnson
+62,2013,Nonfiction,Devil in the Grove,Gilbert King
+63,2013,Biography,The Black Count,Tom Reiss
+64,2013,History,Embers of War,Fredrik Logevall
+65,2013,Poetry,Stag's Leap,Sharon Olds
+66,2012,Nonfiction,The Swerve,Stephen Greenblatt
+67,2012,Biography,George F. Kennan,John Lewis Gaddis
+68,2012,History,Malcolm X,Manning Marable
+69,2012,Poetry,Life on Mars,Tracy K. Smith
+70,2011,Fiction,A Visit from the Goon Squad,Jennifer Egan
+71,2011,Nonfiction,The Emperor of All Maladies,Siddhartha Mukherjee
+72,2011,Biography,Washington,Ron Chernow
+73,2011,History,The Fiery Trial,Eric Foner
+74,2011,Poetry,The Best of It,Kay Ryan
+75,2010,Fiction,Tinkers,Paul Harding
+76,2010,Nonfiction,The Dead Hand,David E. Hoffman
+77,2010,Biography,The First Tycoon,T.J. Stiles
+78,2010,History,Lords of Finance,Liaquat Ahamed
+79,2010,Poetry,Versed,Rae Armantrout
+80,2009,Fiction,Olive Kitteridge,Elizabeth Strout
+81,2009,Nonfiction,Slavery by Another Name,Douglas Blackmon
+82,2009,Biography,American Lion,Jon Meacham
+83,2009,History,The Hemingses of Monticello,Annette Gordon-Reed
+84,2008,Fiction,The Brief Wondrous Life of Oscar Wao,Junot Diaz
+85,2008,Nonfiction,The Years of Extermination,Saul Friedlander
+86,2008,Biography,Eden's Outcasts,John Matteson
+87,2008,History,What Hath God Wrought,Daniel Walker Howe
+88,2007,Fiction,The Road,Cormac McCarthy
+89,2007,Nonfiction,The Looming Tower: Al-Qaeda and the Road to 9/11,Lawrence Wright
+90,2007,Biography,The Most Famous Man in America,Debby Applegate
+91,2007,History,The Race Beat,"Gene Roberts, Hank Klibanoff"
+92,2006,Fiction,March,Geraldine Brooks
+93,2006,Nonfiction,Imperial Reckoning,Caroline Elkins
+94,2006,Biography,American Prometheus,"Kai Bird, Martin J. Sherwin"
+95,2006,History,Polio,David M. Oshinsky
+96,2005,Fiction,Gilead,Marilynne Robinson
+97,2005,Nonfiction,Ghost Wars,Steve Coll
+98,2005,Biography,De Kooning,"Mark Stevens, Annalyn Swan"
+99,2005,History,Washington's Crossing,David Hackett Fischer
+100,2004,Fiction,The Known World,Edward Jones
+101,2004,Nonfiction,Gulag,Anne Applebaum
+102,2004,Biography,Khrushchev,William Taubman
+103,2004,History,A Nation under Our Feet,Steven Hahn
+104,2003,Fiction,Middlesex,Jeffrey Eugenides
+105,2003,Nonfiction,A Problem from Hell,Samantha Power
+106,2003,Biography,Master of the Senate,Robert Caro
+107,2003,History,An Army at Dawn,Rick Atkinson
+108,2002,Fiction,Empire Falls,Richard Russo
+109,2002,Nonfiction,Carry Me Home,Diane McWhorter
+110,2002,Biography,John Adams,David McCullough
+111,2002,History,The Metaphysical Club,Louis Menand

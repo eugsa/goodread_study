@@ -1,5 +1,4 @@
 .zshrc
-reports/*.csv
 .DS_Store
 .env
 __pycache__/

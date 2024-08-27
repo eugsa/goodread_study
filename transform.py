@@ -28,13 +28,13 @@ def clean(book_list):
     book_list = book_list.drop("additional_text", axis=1)
 
     book_list.average_rating = book_list.average_rating.str.replace(r"[a-zA-Z]", "", regex=True)
-    book_list.average_rating = book_list.average_rating.astype("float")
+    book_list.average_rating = book_list.average_rating.astype("float", errors='ignore')
     book_list.amount_rating = book_list.amount_rating.str.replace(r"[a-zA-Z,]", "", regex=True)
-    book_list.amount_rating = book_list.amount_rating.astype("int")
+    book_list.amount_rating = book_list.amount_rating.astype("int", errors='ignore')
     book_list.publishing_year = book_list.publishing_year.str.replace(r"[a-zA-Z]", "", regex=True)
     book_list.publishing_year = book_list.publishing_year.astype("int", errors='ignore')
     book_list.page_count = book_list.page_count.str.split().str[0]
-    book_list.page_count = book_list.page_count.astype("int")
+    book_list.page_count = book_list.page_count.astype("int", errors='ignore')
     book_list.price = book_list.price.str.split().str[1].str.replace('$', '')
     book_list.price = book_list.price.astype("float", errors='ignore')
     book_list.currently_reading_count = book_list.currently_reading_count.str.split().str[0].str.replace(',', '')

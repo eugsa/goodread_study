@@ -2,7 +2,6 @@
 import config
 
 def generate_report(book_list):
-    filename = "book_list.csv"
-    filepath = config.REPORTS_PATH + filename
+    filepath = config.REPORTS_PATH + config.BOOKS_FILENAME
     book_list.to_csv(filepath)
     print(f"See saved report as { filepath }")

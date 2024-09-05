@@ -1,12 +1,9 @@
 import re
 import pandas as pd
-
-PRIZES_FILEPATH = "./data/"
-PULITZER_RAW_FILENAME = "pulitzer_prizes_raw.txt"
-PULITZER_CLEAN_FILENAME = "pulitzer_prizes.csv"
+import config
 
 def main():
-    with open(PRIZES_FILEPATH + PULITZER_RAW_FILENAME, "r", encoding="utf-8") as file:
+    with open(config.PRIZES_FILEPATH + config.PULITZER_RAW_FILENAME, "r", encoding="utf-8") as file:
         lines = file.readlines()
 
     data = []
@@ -31,7 +28,7 @@ def main():
 
     df = pd.DataFrame(data)
 
-    filepath = PRIZES_FILEPATH + PULITZER_CLEAN_FILENAME
+    filepath = config.PRIZES_FILEPATH + config.PULITZER_CLEAN_FILENAME
     df.to_csv(filepath)
 
 

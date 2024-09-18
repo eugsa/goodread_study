@@ -32,12 +32,13 @@ def scrape_books_in_page(soup, debug):
 def has_next_page(soup):
     return bool(soup.find("a", class_="next_page"))
 
-def fetch_general_infos(driver, debug):
+def fetch_general_infos(driver, debug, shelf):
     current_page = 1
     df = pd.DataFrame()
+    shelf_url = config.URL + shelf
     while True:
         print(f"Scraping page: {current_page}")
-        current_url = config.URL + config.PAGE_URL_TEXT + str(current_page)
+        current_url = shelf_url + config.PAGE_URL_TEXT + str(current_page)
         driver.get(current_url)
         soup = parser_utils.soup_init(driver.page_source)
         data = scrape_books_in_page(soup, debug)
@@ -87,8 +88,8 @@ def fetch_detailed_infos(book, driver):
         "wanting_to_read_count": wanting_to_read_count
     })
 
-def extract_data(driver, debug):
-    basics_df = fetch_general_infos(driver, debug)
+def extract_data(driver, debug, shelf):
+    basics_df = fetch_general_infos(driver, debug, shelf)
     fetch_detailed_infos_lambda = lambda book: fetch_detailed_infos(book, driver)
     dtl_inf_col_names = ["page_count", "price", "currently_reading_count", "wanting_to_read_count"]
     basics_df[dtl_inf_col_names] = basics_df.apply(

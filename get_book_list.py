@@ -4,7 +4,7 @@ import parser_utils
 import extract
 import transform
 import export
-import manage_db
+# import manage_db
 
 def main():
     arg_parser = argparse.ArgumentParser(

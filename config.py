@@ -6,9 +6,9 @@ URL = BASE_URL + "/shelf/show/"
 PAGE_URL_TEXT = "?page="
 REPORTS_PATH = "./reports/"
 
-# Database
-DATABASE = "goodreads_study"
-BOOKS_TABLE = "books"
+## Database
+# DATABASE = "goodreads_study"
+# BOOKS_TABLE = "books"
 
 # Filenames and filapaths
 BOOKS_END_FILENAME = "_book_list.csv"

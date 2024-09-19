@@ -5,6 +5,7 @@ LOGIN_URL = BASE_URL + "/user/sign_in"
 URL = BASE_URL + "/shelf/show/"
 PAGE_URL_TEXT = "?page="
 REPORTS_PATH = "./reports/"
+FIGURES_PATH = "./figures/"
 
 
 # Filenames and filapaths
